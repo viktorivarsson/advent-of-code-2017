@@ -1,7 +1,7 @@
 // Read the input
 const input = require('fs').readFileSync('day02.txt', 'utf8');
 
-// Split input into columns and remove empty rows
+// Split input into rows and remove empty rows
 const rows = input.split('\n').filter(r => r !== '');
 
 // Get columns as array values casted to integers
