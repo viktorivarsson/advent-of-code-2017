@@ -45,7 +45,7 @@ const generateMatrix = num => {
   let x = 0;
   let y = 0;
   let step = 0;
-  for (let i = 0; i < total;) {
+  for (let i = 0; i < total; ) {
     while (y + step < num) {
       i++;
       matrix[x][y] = i;

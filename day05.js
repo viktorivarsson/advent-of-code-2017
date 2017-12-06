@@ -6,9 +6,9 @@ const notEmpty = x => x !== '';
 
 // Get input as an array of lines, removing empty lines and casting to numbers
 const lines = input
-	.split('\n')
-	.filter(notEmpty)
-	.map(Number);
+  .split('\n')
+  .filter(notEmpty)
+  .map(Number);
 
 const testLines = [0, 3, 0, 1, -3];
 
@@ -18,33 +18,33 @@ const testLines = [0, 3, 0, 1, -3];
 
 // Get total number of jumps required
 const getJumpsRequired = (inputMaze, part) => {
-	// Make maze a copy of the input maze to not mutate the original
-	const maze = [...inputMaze];
+  // Make maze a copy of the input maze to not mutate the original
+  const maze = [...inputMaze];
 
-	let currentIndex = 0;
-	let steps = 0;
+  let currentIndex = 0;
+  let steps = 0;
 
-	// While the current index is smaller than the maze length
-	while (currentIndex < maze.length) {
-		// Set next index to the sum of current index and the value of current index
-		let nextIndex = currentIndex + maze[currentIndex];
+  // While the current index is smaller than the maze length
+  while (currentIndex < maze.length) {
+    // Set next index to the sum of current index and the value of current index
+    let nextIndex = currentIndex + maze[currentIndex];
 
-		// If part 1 or value of current index is smaller than three,
-		// increase the value of current index. If not, decrease it
-		if (part === 1 || maze[currentIndex] < 3) {
-			maze[currentIndex]++;
-		} else {
-			maze[currentIndex]--;
-		}
+    // If part 1 or value of current index is smaller than three,
+    // increase the value of current index. If not, decrease it
+    if (part === 1 || maze[currentIndex] < 3) {
+      maze[currentIndex]++;
+    } else {
+      maze[currentIndex]--;
+    }
 
-		// Set current index to the next calculated index
-		currentIndex = nextIndex;
+    // Set current index to the next calculated index
+    currentIndex = nextIndex;
 
-		// Increase the steps taken
-		steps++;
-	}
+    // Increase the steps taken
+    steps++;
+  }
 
-	return steps;
+  return steps;
 };
 
 const part1 = getJumpsRequired(lines, 1);
