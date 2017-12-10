@@ -1,14 +1,16 @@
+
+
 // Read the input
-const input = require('fs').readFileSync('day02.txt', 'utf8');
+const input = require('fs').readFileSync('src/day02/day02.txt', 'utf8');
 
 // Split input into rows and remove empty rows
 const rows = input.split('\n').filter(r => r !== '');
 
 // Get columns as array values casted to integers
-const getCols = row => row.split('\t').map(x => parseInt(x, 10));
+const getCols = row => row.split('\t').map(Number);
 
 // Calculate checksum for rows given a function to be applied to every row
-const checksum = rows => fn => rows.reduce((sum, row) => (sum += fn(row)), 0);
+const checksum = rows => fn => rows.reduce((sum, row) => sum += fn(row), 0);
 
 /**
  * PART 1

@@ -1,14 +1,19 @@
+// @flow
+
+type matrix = Array<Array<number>>;
+
 // Input
 const input = 277678;
 
 // Add
-const add = x => y => x + y;
+const add = (x: number) => (y: number): number => x + y;
 
 // Get range
-const range = (fr, to) => [...Array(to - fr + 1).keys()].map(add(fr));
+const range = (fr: number, to: number): Array<number> =>
+  [...Array(to - fr + 1).keys()].map(add(fr));
 
 // Genrate empty cells of given size
-const generateEmptyCells = size => {
+const generateEmptyCells = (size: number): matrix => {
   return range(1, size).reduce((container, row) => {
     const cols = range(1, size).reduce((rc, col) => [...rc, 0], []);
     return [...container, cols];
@@ -16,12 +21,12 @@ const generateEmptyCells = size => {
 };
 
 // Given top value, and a number, invert the top number based on top value
-const invert = top => num => top - num + 1;
+const invert = (top: number) => (num: number): number => top - num + 1;
 
 // Reverse the matrix, making the lowest value the center, going outwards
-const reverseMatrix = matrix => {
+const reverseMatrix = (matrix: matrix): matrix => {
   // Get the top value of the matrix
-  const topValue = matrix.reduce((top, row) => {
+  const topValue = matrix.reduce((top: number, row: Array<number>) => {
     // Get top of the row
     const rowTop = Math.max(...row);
 
@@ -38,7 +43,7 @@ const reverseMatrix = matrix => {
 };
 
 // Generate a matrix
-const generateMatrix = num => {
+const generateMatrix = (num: number): matrix => {
   const total = num * num;
   const matrix = generateEmptyCells(num);
 
@@ -85,7 +90,7 @@ const generateMatrix = num => {
 };
 
 // Get the width / height of the matrix to include target
-const getRequiredSize = (target, size = 0) => {
+const getRequiredSize = (target: number, size = 0): number => {
   const cells = Math.pow(size, 2);
 
   // If cell number is larger than or equal to target, return size
@@ -96,7 +101,9 @@ const getRequiredSize = (target, size = 0) => {
 };
 
 // Given a matrix and a target, return the location as a tuple
-const locationOfTarget = matrix => target => {
+const locationOfTarget = (matrix: matrix) => (
+  target: number
+): Array<number> => {
   return matrix.reduce((location, row, i) => {
     const indexOfBase = row.indexOf(target);
 
@@ -112,7 +119,7 @@ const locationOfTarget = matrix => target => {
 };
 
 // Get difference between two positions
-const posDiff = (fr, to) => {
+const posDiff = (fr: Array<number>, to: Array<number>): number => {
   const d1 = Math.abs(fr[0] - to[0]);
   const d2 = Math.abs(fr[1] - to[1]);
 
@@ -120,7 +127,7 @@ const posDiff = (fr, to) => {
 };
 
 // Get the distance from start to target
-const getDistance = target => {
+const getDistance = (target: number): number => {
   // Get the smallest possible matrix size to include target number
   const size = getRequiredSize(target);
 

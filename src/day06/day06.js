@@ -1,11 +1,16 @@
+// @flow
+
 // Read input, split by tab and cast array values to number
 const input = require('fs')
-  .readFileSync('day06.txt', 'utf8')
+  .readFileSync('src/day06/day06.txt', 'utf8')
   .split('\t')
   .map(Number);
 
 // Dispense blocks into banks
-const dispense = (banks, currentIndex) => {
+const dispense = (
+  banks: Array<number>,
+  currentIndex: number
+): Array<number> => {
   // Get the number of banks
   const numberOfBanks = banks.length;
 
@@ -33,8 +38,7 @@ const dispense = (banks, currentIndex) => {
 };
 
 // Solve cycles problem given the banks as input
-// depending on which part of the problem to solve
-const getCyclesToDetectInfinite = (banks, part) => {
+const getCyclesToDetectInfinite = (banks: Array<number>): Array<number> => {
   // Create a new set to store block set combinations
   const blocksInBanks = new Set();
 

@@ -1,22 +1,24 @@
+// @flow
+
 // Return if a string is not empty
-const notEmpty = x => x !== '';
+const notEmpty = (x: string): boolean => x !== '';
 
 // Read input, split by new lines and remove empty lines
 const input = require('fs')
-  .readFileSync('day07.txt', 'utf8')
+  .readFileSync('src/day07/day07.txt', 'utf8')
   .split('\n')
   .filter(notEmpty);
 
 // Trim string
-const trim = str => str.trim();
+const trim = (str: string): string => str.trim();
 
 // Split a string by space and return first array item to get name
-const getName = str => {
+const getName = (str: string): string => {
   return str.split(' ')[0];
 };
 
 // Get array of children from string
-const getChildren = str => {
+const getChildren = (str: string): Array<string> | null => {
   const children = str.split('->')[1];
 
   if (!children) return null;
@@ -25,7 +27,7 @@ const getChildren = str => {
 };
 
 // Get name of bottom node
-const getBottom = input => {
+const getBottom = (input: Array<string>): string => {
   // Get the children of all items
   const allChildren = input.reduce((children, item) => {
     const itemChildren = getChildren(item);

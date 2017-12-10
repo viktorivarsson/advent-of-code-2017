@@ -1,16 +1,13 @@
+
+
 // Read input
-const input = require('fs').readFileSync('day05.txt', 'utf8');
+const input = require('fs').readFileSync('src/day05/day05.txt', 'utf8');
 
 // Return if a string is not empty
 const notEmpty = x => x !== '';
 
 // Get input as an array of lines, removing empty lines and casting to numbers
-const lines = input
-  .split('\n')
-  .filter(notEmpty)
-  .map(Number);
-
-const testLines = [0, 3, 0, 1, -3];
+const lines = input.split('\n').filter(notEmpty).map(Number);
 
 /**
  * PART 1

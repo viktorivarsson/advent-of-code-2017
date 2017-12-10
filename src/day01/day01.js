@@ -1,10 +1,12 @@
+// @flow
+
 // Read the input and only get first line
-const input = require('fs')
-  .readFileSync('day01.txt', 'utf8')
+const input: string = require('fs')
+  .readFileSync('src/day01/day01.txt', 'utf8')
   .split('\n')[0];
 
 // Return array of numbers from string
-const strToNumArray = str => str.split('').map(Number);
+const strToNumArray = (str: string): Array<number> => str.split('').map(Number);
 
 /**
  * PART 1
@@ -12,8 +14,8 @@ const strToNumArray = str => str.split('').map(Number);
 
 // Calculate the sum of all numbers in the input
 // string that matches the next number of the string
-const nextMatchSum = input => {
-  return strToNumArray(input).reduce((sum, current, index, array) => {
+const nextMatchSum = (input: string) => {
+  return strToNumArray(input).reduce((sum: number, current, index, array) => {
     // Check if item of array
     const last = index === array.length - 1;
 
@@ -33,7 +35,7 @@ console.log(part1);
  */
 
 // Get pairs by dividing the input and group the values by index
-const getPairs = input => {
+const getPairs = (input: string) => {
   const halfLength = input.length / 2;
 
   const aArray = strToNumArray(input.slice(0, halfLength));
@@ -43,13 +45,13 @@ const getPairs = input => {
 };
 
 // Return if pair keys are equal
-const pairIsEqual = x => x[0] === x[1];
+const pairIsEqual = (x: [number, number]): boolean => x[0] === x[1];
 
 // Return sum of an array pair
-const sumOfPair = x => x[0] + x[1];
+const sumOfPair = (x: [number, number]): number => x[0] + x[1];
 
 // Given an array, return the sum of the values where the keys are equal
-const matchingPairsSum = pairs =>
+const matchingPairsSum = (pairs: Array<[number, number]>) =>
   pairs.filter(pairIsEqual).reduce((sum, pair) => (sum += sumOfPair(pair)), 0);
 
 const part2 = matchingPairsSum(getPairs(input));

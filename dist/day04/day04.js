@@ -1,5 +1,7 @@
+
+
 // Read input
-const input = require('fs').readFileSync('day04.txt', 'utf8');
+const input = require('fs').readFileSync('src/day04/day04.txt', 'utf8');
 
 // Return if a string is not empty
 const notEmpty = x => x !== '';
@@ -11,11 +13,7 @@ const splitSpace = str => str.split(' ');
 const lines = input.split('\n').filter(notEmpty);
 
 // Sort a string by its letters
-const sortLetters = str =>
-  str
-    .split('')
-    .sort()
-    .join('');
+const sortLetters = str => str.split('').sort().join('');
 
 /**
  * PART 1
