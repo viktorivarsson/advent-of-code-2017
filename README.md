@@ -1,8 +1,13 @@
 # Advent of Code 2017
 
+## Building
+
+1. Install dependencies with `yarn install` or `npm install`.
+2. Run the build process with `yarn build` or `npm run build`.
+
 ## Running a solution
 
-Run `node day01.js`.
+Run `node dist/day01/day01.js`.
 
 ## License
 
