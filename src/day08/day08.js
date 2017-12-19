@@ -71,8 +71,12 @@ const calculateRow = (values: Object, row: string): keyVal => {
   };
 };
 
-// Calculate the input for step, given the input rows array
-const calculateInput = (input: Array<string>): number => {
+/**
+ * PART 1
+ */
+
+// Calculate the input for step 1, given the input rows array
+const calculatePart1 = (input: Array<string>): number => {
   // Get the sums of all rows
   const rowSums = input.reduce((values: Object, row: string) => {
     const result = calculateRow(values, row);
@@ -88,5 +92,33 @@ const calculateInput = (input: Array<string>): number => {
   return Math.max(...Object.values(rowSums).map(Number));
 };
 
-const part1 = calculateInput(input);
-console.log(part1);
+const part1 = calculatePart1(input);
+console.log('part 1:', part1);
+
+/**
+ * PART 2
+ */
+
+// Calculate the input for step, given the input rows array
+const calculatePart2 = (input: Array<string>): number => {
+  // Return the max value of all row values
+  return input.reduce((values: Object, row: string) => {
+    const result = calculateRow(values, row);
+
+    // Get the values max value and default to 0
+    const valuesMax: number = values.__MAX_VALUE__ || 0;
+
+    // Set max to the highest of result value and values max
+    const max = result.value > valuesMax ? result.value : valuesMax;
+
+    // Replace the values and give the key of the row its new value
+    return {
+      ...values,
+      __MAX_VALUE__: max,
+      [result.key]: result.value
+    };
+  }, {}).__MAX_VALUE__;
+};
+
+const part2 = calculatePart2(input);
+console.log('part 2:', part2);
